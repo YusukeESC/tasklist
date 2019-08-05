@@ -14,30 +14,30 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(
-            name="getAllMessages",
+            name="getAllTasks",
             query="SELECT m FROM Task AS m ORDER BY m.id DESC"),
     @NamedQuery(
-            name="getMessagesCount",
+            name="getTasksCount",
             query="SELECT COUNT(m) FROM Task AS m")
 })
 @Table(name="tasks")
 public class Task {
 
     @Id
-    @Column
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(name="content",length=255,nullable=false)
     private String content;
 
-    @Column
+    @Column(name="created_at", nullable=false)
     private Timestamp created_at;
 
-    @Column
+    @Column(name="updated_at", nullable=false)
     private Timestamp updated_at;
 
-    @Column
+    @Column(name="deadline")
     private Timestamp deadline;
 
     public Integer getId() {
