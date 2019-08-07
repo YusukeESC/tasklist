@@ -14,14 +14,13 @@
         <link rel="stylesheet" href="<c:url value="/css/style.css" />">
     </head>
     <body>
-        <div id="wrapper">
-        <div id="header"><h1>タスク管理</h1></div>
-        <div id="content">${param.content}</div>
+        <header class="mb-5">
+            <div id="header"><h1>タスク管理</h1></div>
+        </header>
 
+        <div class="container"><div id="content">${param.content}</div></div>
 
-        </div>
-
-        <footer class="text-center text-muted py-4">
+        <footer class="text-center text-muted py-4 fixed-bottom">
             (c)Yusuke Takeuchi
         </footer>
 

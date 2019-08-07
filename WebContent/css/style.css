@@ -45,14 +45,6 @@ a {
     color: #24738e;
 }
 
-table, tr, th, td {
-    border: 1px solid #cccccc;
-}
-
-table {
-    width: 100%;
-    table-layout: fixed;
-}
 
 th {
     width: 26%;

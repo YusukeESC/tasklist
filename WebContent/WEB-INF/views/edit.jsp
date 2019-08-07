@@ -15,10 +15,10 @@
                 </form>
 
                 <p>
-                    <a href="${pageContext.request.contextPath}/index">一覧に戻る</a>
+                    <a href="${pageContext.request.contextPath}/index" class="btn btn-secondary btn-sm">一覧に戻る</a>
                 </p>
                 <p>
-                    <a href="#" onclick="confirmDestroy()">このメッセージを削除する</a>
+                    <a href="#" onclick="confirmDestroy()" class="btn btn-secondary btn-sm">このメッセージを削除する</a>
                 </p>
                 <form method="POST"
                     action="${pageContext.request.contextPath}/destroy">
@@ -36,7 +36,7 @@
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした</h2>
 
-                <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
+                <p><a href="${pageContext.request.contextPath}/index" class="btn btn-secondary btn-sm">一覧に戻る</a></p>
             </c:otherwise>
         </c:choose>
 

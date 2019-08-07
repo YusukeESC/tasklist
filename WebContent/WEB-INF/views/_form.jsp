@@ -9,11 +9,12 @@
         </c:forEach>
     </div>
 </c:if>
-
+<div class="form-group">
 <label for="content">タスク</label><br/>
-<input type="text" name="content" value="${task.content}"><br/><br/>
+<input class="form-control" type="text" name="content" value="${task.content}"><br/><br/>
 <label for="deadline">締め切り</label><br/>
-<input type="datetime-local" name="deadline" step="60" value="${task.deadline.toString().replace(' ', 'T')}"/>
+<input class="form-control" type="datetime-local" name="deadline" step="60" value="${task.deadline.toString().replace(' ', 'T')}"/>
 
 <input type="hidden" name="_token" value="${_token}" />
-<button type="submit">投稿</button>
+<button type="submit"  class="btn btn-secondary btn-sm mt-2">投稿</button>
+</div>

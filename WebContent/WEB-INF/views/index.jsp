@@ -5,9 +5,10 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
         <h2>タスク一覧</h2>
-        <a href="${pageContext.request.contextPath}/new">タスクの追加</a><br/>
+        <a href="${pageContext.request.contextPath}/new" class="btn btn-secondary btn-sm">タスクの追加</a><br/>
         <br/>
-        <table>
+        <table class="table table-hover">
+            <thead><tr><th scope="col" class="col-4">タスク</th><th scope="row" class="col-8">締め切り</th></tr></thead>
             <tbody>
             <c:forEach var="task" items="${tasks}">
             <tr><td><a href="${pageContext.request.contextPath}/show?id=${task.id}">

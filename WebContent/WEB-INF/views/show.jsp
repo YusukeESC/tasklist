@@ -12,8 +12,12 @@
         </tbody>
 
         </table>
-        <a href="${pageContext.request.contextPath}/index">一覧に戻る</a><br/>
-        <a href="${pageContext.request.contextPath}/edit?id=${task.id}">編集する</a><br/>
+        <div class="mt-2">
+        <a href="${pageContext.request.contextPath}/index"  class="btn btn-secondary btn-sm mr-2">一覧に戻る</a>
+        <a href="${pageContext.request.contextPath}/edit?id=${task.id}"  class="btn btn-secondary btn-sm">編集する</a>
+        </div>
+
+
 
     </c:param>
 </c:import>
