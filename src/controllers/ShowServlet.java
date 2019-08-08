@@ -36,9 +36,8 @@ public class ShowServlet extends HttpServlet {
 
         EntityManager em = DBUtil.createEntityManager();
 
-        Task task = new Task();
-
-        task = em.find(Task.class, Integer.valueOf(request.getParameter("id")));
+        Task task = em.find(Task.class, Integer.parseInt(request.getParameter("id")));
+        em.close();
 
         request.setAttribute("task", task);
 

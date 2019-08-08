@@ -55,7 +55,7 @@ public class CreateServlet extends HttpServlet {
                 Timestamp deadline = Timestamp.valueOf(LocalDateTime.parse(request.getParameter("deadline")));
                 task.setDeadline(deadline);
             }catch(DateTimeParseException e){
-//                task.setDeadline(null);
+                task.setDeadline(null);
             }
 
 

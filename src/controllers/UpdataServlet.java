@@ -38,46 +38,59 @@ public class UpdataServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String token = (String)request.getParameter("_token");
-        if(token != null || token.equals(request.getSession().getId())){
+        if(token != null && token.equals(request.getSession().getId())){
             EntityManager em = DBUtil.createEntityManager();
 
             Task task = em.find(Task.class, (Integer)(request.getSession().getAttribute("task_id")));
 
             task.setContent(request.getParameter("content"));
 
+
             try{
                 Timestamp deadline = Timestamp.valueOf(LocalDateTime.parse(request.getParameter("deadline")));
                 task.setDeadline(deadline);
             }catch(DateTimeParseException e){
-//                task.setDeadline(null);
+                task.setDeadline(null);
             }
 
 
             task.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
             List<String> errors = TaskValidator.validate(task);
+
+
             if(errors.size() > 0){
                 em.close();
 
-                request.setAttribute("message", task);
+                request.setAttribute("task", task);
                 request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/messages/edit.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/edit.jsp");
                 rd.forward(request, response);
 
+            }else{
+                em.getTransaction().begin();
+                em.getTransaction().commit();
+                request.getSession().setAttribute("flush", "更新が完了しました");
+                em.close();
+
+                request.getSession().removeAttribute("task_id");
+                response.sendRedirect(request.getContextPath() + "/index");
             }
 
 
-            em.getTransaction().begin();
-            em.getTransaction().commit();
-            request.getSession().setAttribute("flush", "更新が完了しました");
-            em.close();
+        }else{
+            if(token == null){
 
-            request.getSession().removeAttribute("message_id");
-            response.sendRedirect(request.getContextPath() + "/index");
+                response.getWriter().append("null at: ").append(request.getContextPath());
+            }else{
 
+                response.getWriter().append("not null at: ").append(request.getContextPath());
+                response.getWriter().println(token);
+                response.getWriter().println((String)request.getSession().getId());
 
+            }
         }
     }
 
